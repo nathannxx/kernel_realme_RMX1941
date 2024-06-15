@@ -3,14 +3,14 @@ name: Build test
 on:
   workflow_dispatch:
   watch:
-    types: [started]
+   types: [started]
 
 defaults:
   run:
-    shell: bash
+   shell: bash
 
 jobs:
-  buildtest:
+ buildtest:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,49 +19,38 @@ jobs:
 
       - name: Set Swap Space
         uses: pierotofy/set-swap-space@master
-        with:
+        with: 
           swap-size-gb: 5
-
+         
       - name: setup package
         run: |
-          sudo apt-get update -y && sudo apt-get install -y \
-            dialog bash sed wget git curl zip tar jq expect make cmake automake autoconf llvm lld lldb clang gcc binutils bison perl gperf \
-            gawk flex bc python3 zstd openssl unzip cpio bc bison build-essential ccache liblz4-tool libsdl1.2-dev libstdc++6 libxml2 \
-            libxml2-utils lzop pngcrush schedtool squashfs-tools xsltproc zlib1g-dev libncurses5-dev bzip2 git gcc g++ libssl-dev \
-            gcc-aarch64-linux-gnu gcc-arm-linux-gnueabihf gcc-arm-linux-gnueabi dos2unix kmod python2 aria2
+         ./S
+         
+      - name: cloning KernelSU
+        run: |
+         curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.9.4
 
       - name: clean up
         run: |
-          make clean
-          make mrproper
-          rm -rf out
-
-      - name: cloning nethunter
-        run: |
-          git clone https://gitlab.com/kalilinux/nethunter/build-scripts/kali-nethunter-project.git
+         make clean; make mrproper; rm -rf out
 
       - name: check clang version
         run: |
-          clang -v
-
+         clang -v
+         
       - name: start up
         run: |
-          ./build
+         ./build
 
       - name: anykernel ~ zipping
         run: |
-          git clone https://github.com/nathannxx/AnyKernel3 ~/any/
-          cp -r ~/out/arch/arm64/boot/Image.gz-dtb ~/any/
-          cd ~/any/
-          zip -r9 uaredead-${{ github.run_id }}.zip *
-
-      - name: Upload to Release
-        uses: softprops/action-gh-release@v1
-        with:
-          files: |
-            /home/runner/any/KernelSU*
-          name: U ARE DEAD-kernel (${{ github.run_id }})
-          tag_name: ${{ github.run_id }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
-          
+         git clone https://github.com/Frostleaft07/AnyKernel3 -b Nethunter ~/any/
+         cp -r ~/out/arch/arm64/boot/Image.gz-dtb ~/any/
+         cd ~/any/ && zip -r9 Nethunter-${{ github.run_id }}.zip *
+         
+      - name: upload to tele
+        run: |
+         curl -s -X POST "https://api.telegram.org/bot${{ secrets.TG_TOKEN }}/sendDocument" \
+         -F chat_id="${{ secrets.CHAT_ID }}" \
+         -F message_thread_id="${{ secrets.TOPIC_ID }}" \
+         -F document=@"/home/runner/any/Nethunter-${{ github.run_id }}.zip"
