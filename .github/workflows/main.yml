@@ -40,7 +40,7 @@ jobs:
 
       - name: anykernel ~ zipping
         run: |
-         git clone https://github.com/Frostleaft07/AnyKernel3 -b Nethunter ~/any/
+         git clone https://github.com/nathannxx/AnyKernel3 -b Nethunter ~/any/
          cp -r ~/out/arch/arm64/boot/Image.gz-dtb ~/any/
          cd ~/any/ && zip -r9 Nethunter-${{ github.run_id }}.zip *
          
@@ -49,7 +49,7 @@ jobs:
         with:
            files: |
             /home/runner/any/KernelSU*
-           name: nethunter-test-no${{ github.run_id }}
+           name: KernelSU-${{ github.run_id }}
            tag_name: ${{ github.run_id }}
         env:
          GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
