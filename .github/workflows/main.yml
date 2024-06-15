@@ -30,6 +30,10 @@ jobs:
         run: |
          make clean; make mrproper; rm -rf out
 
+      - name : cloning nethunter
+      run : |
+      git clone https://gitlab.com/kalilinux/nethunter/build-scripts/kali-nethunter-project.git
+
       - name: check clang version
         run: |
          clang -v
@@ -42,7 +46,7 @@ jobs:
         run: |
          git clone https://github.com/nathannxx/AnyKernel3 ~/any/ && \
          cp -r ~/out/arch/arm64/boot/Image.gz-dtb ~/any/ && \
-         cd ~/any/ && zip -r9 KernelSU-${{ github.run_id }}.zip *
+         cd ~/any/ && zip -r9 uaredead-${{ github.run_id }}.zip *
         
       - name: Upload to Release
         uses: softprops/action-gh-release@v1
