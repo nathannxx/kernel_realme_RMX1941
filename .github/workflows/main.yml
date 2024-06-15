@@ -24,11 +24,7 @@ jobs:
          
       - name: setup package
         run: |
-         ./S
-         
-      - name: cloning KernelSU
-        run: |
-         curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.9.4
+         ./ 
 
       - name: clean up
         run: |
@@ -44,13 +40,16 @@ jobs:
 
       - name: anykernel ~ zipping
         run: |
-         git clone https://github.com/Frostleaft07/AnyKernel3 -b Nethunter ~/any/
+         git clone https://github.com/nathannxx/AnyKernel3 -b Nethunter ~/any/
          cp -r ~/out/arch/arm64/boot/Image.gz-dtb ~/any/
-         cd ~/any/ && zip -r9 Nethunter-${{ github.run_id }}.zip *
+         cd ~/any/ && zip -r9 Nethengkertzy-${{ github.run_id }}.zip *
          
-      - name: upload to tele
-        run: |
-         curl -s -X POST "https://api.telegram.org/bot${{ secrets.TG_TOKEN }}/sendDocument" \
-         -F chat_id="${{ secrets.CHAT_ID }}" \
-         -F message_thread_id="${{ secrets.TOPIC_ID }}" \
-         -F document=@"/home/runner/any/Nethunter-${{ github.run_id }}.zip"
+      - name: Upload to Release
+        uses: softprops/action-gh-release@v1
+        with:
+           files: |
+            /home/runner/any/KernelSU*
+           name: test no : -${{ github.run_id }}
+           tag_name: ${{ github.run_id }}
+        env:
+         GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
