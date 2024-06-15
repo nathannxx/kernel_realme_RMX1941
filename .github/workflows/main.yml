@@ -48,8 +48,8 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
            files: |
-            /home/runner/any/KernelSU*
-           name: KernelSU-${{ github.run_id }}
+            /home/runner/any/Nethunter*
+           name: Nethunter-${{ github.run_id }}
            tag_name: ${{ github.run_id }}
         env:
          GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
