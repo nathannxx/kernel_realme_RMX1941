@@ -49,7 +49,7 @@ jobs:
         with:
            files: |
             /home/runner/any/KernelSU*
-           name: test no : -${{ github.run_id }}
+           name: nethunter-test-no${{ github.run_id }}
            tag_name: ${{ github.run_id }}
         env:
          GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
