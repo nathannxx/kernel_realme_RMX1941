@@ -12,9 +12,8 @@ do.modules=1
 do.systemless=0 #Never use this for NetHunter kernels as it prevents us from writing to /lib/modules
 do.cleanup=1
 do.cleanuponabort=0
-device.name1=RMX2180
-device.name2=RMX2185
-device.name3=Nightmare
+device.name1=RMX1945
+device.name2=RMX1941
 supported.versions=
 supported.patchlevels=
 '; } # end properties
