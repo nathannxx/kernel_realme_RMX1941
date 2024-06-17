@@ -13,8 +13,8 @@ export ARCH=arm64
 export SUBARCH=arm64
 
 # user & host
-export KBUILD_BUILD_USER=Frostleaf
-export KBUILD_BUILD_HOST=Darkness
+export KBUILD_BUILD_USER=BIJI
+export KBUILD_BUILD_HOST=KUDA
 
 # Enable ccache to speed up compilation
 CCACHE=true
