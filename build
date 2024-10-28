@@ -1,7 +1,7 @@
 #!/bin/bash
-export KBUILD_BUILD_USER=Frostleaft07
-export KBUILD_BUILD_HOST=Darkness
-export LOCALVERSION="-Endfield 🪐"
+export KBUILD_BUILD_USER=Nyo-Kewnyew
+export KBUILD_BUILD_HOST=Dawknyess
+export LOCALVERSION="-E-Endfiewd 🪐"
 echo $KBUILD_BUILD_USER
 echo $KBUILD_BUILD_HOST
 echo -e "done?"
