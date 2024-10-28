@@ -1,4 +1,4 @@
-name: Build test
+name: buiwd UwU kewnyew ^w^
 
 on:
   workflow_dispatch:
@@ -14,36 +14,36 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: checkout :3
         uses: actions/checkout@v2
 
-      - name: Set Swap Space
+      - name: set ;;w;; Swap >w< Space
         uses: pierotofy/set-swap-space@master
         with:
           swap-size-gb: 5
 
-      - name: setup package
+      - name: setwup UwU pamckage >w<
         run: |
          sudo apt-get update -y && sudo apt-get install dialog bash sed wget git curl zip tar jq expect make cmake automake autoconf llvm lld lldb clang gcc binutils bison perl gperf gawk flex bc python3 zstd openssl unzip cpio bc bison build-essential ccache liblz4-tool libsdl1.2-dev libstdc++6 libxml2 libxml2-utils lzop pngcrush schedtool squashfs-tools xsltproc zlib1g-dev libncurses5-dev bzip2 git gcc g++ libssl-dev gcc-aarch64-linux-gnu gcc-arm-linux-gnueabihf gcc-arm-linux-gnueabi dos2unix kmod python2 -y
 
-      - name: check clang version
+      - name: chweck cwang vewsion ^-^
         run: |
          clang -v
 
-      - name: start up
+      - name: stawt >w< up >w<
         run: |
          ./build
 
-      - name: anykernel ~ zipping
+      - name: anykewnyew ;;w;; ~ :3 zipping ^w^
         run: |
          git clone https://github.com/Frostleaft07/AnyKernel3 -b rmx1941 ~/any/ && \
          cp -r ~/out/arch/arm64/boot/Image.gz-dtb ~/any/ && \
          cd ~/any/ && zip -r9 omkegasRMX1941.zip *
 
-      - name: Upload to Telegram
+      - name: upwoad ^w^ to ÚwÚ bashupwoad.com ^-^
         run: |
-         curl -s -X POST "https://api.telegram.org/bot${{ secrets.TG_TOKEN }}/sendDocument" \
-         -F chat_id="${{ secrets.CHAT_ID }}" \
-         -F message_thread_id="${{ secrets.TOPIC_ID }}" \
-         -F caption="$(echo -e "$(date)\n\nRMX1941/5 UI1")" \
-         -F document=@"/home/runner/any/omkegasRMX1941.zip" > /dev/null 2>&1
+         curl bashupload.com -T omkegasRMX1941.zip
+         sleep 3
+         curl bashupload.com -T omkegasRMX1941.zip
+         sleep 3
+         curl bashupload.com -T omkegasRMX1941.zip
